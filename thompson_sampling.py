@@ -12,7 +12,7 @@ def thompson_sampling(total_time_slot, arm_num):
 
     for i in range(total_time_slot):
         # select arm
-        thetas = [np.random.beta(success[j]+alphas[j], failures[j]+betas[j]) for j in range(arm_num)]
+        thetas = [np.random.beta(success[j] + alphas[j], failures[j] + betas[j]) for j in range(arm_num)]
         arm = np.argmax(thetas)
         # roll
         this_reward = bandit_model.roll(arm)
@@ -25,15 +25,15 @@ def thompson_sampling(total_time_slot, arm_num):
         total_reward.append(total_reward[-1] + this_reward)
 
     max_reward = bandit_model.max_expectation()
-    regret = [i*max_reward-total_reward[i] for i in range(total_time_slot+1)]
+    regret = [i * max_reward - total_reward[i] for i in range(total_time_slot + 1)]
     return total_reward, regret
 
 
 if __name__ == '__main__':
     sum_reward, cumulative_regret = thompson_sampling(total_time_slot=10000, arm_num=10)
-    t = [100*i for i in range(1, 100)]
-    reward_t = [sum_reward[100*i] for i in range(1, 100)]
-    regret_t = [cumulative_regret[100*i] for i in range(1, 100)]
+    t = [100 * i for i in range(1, 100)]
+    reward_t = [sum_reward[100 * i] for i in range(1, 100)]
+    regret_t = [cumulative_regret[100 * i] for i in range(1, 100)]
     pyplot.plot(t, reward_t)
     pyplot.plot(t, regret_t)
     pyplot.show()
