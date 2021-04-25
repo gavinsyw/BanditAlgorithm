@@ -33,10 +33,10 @@ def UCB(total_time_slot, arm_num):
 
 
 if __name__ == '__main__':
-    a_reward, r_time, sum_reward, cumulative_regret = UCB(total_time_slot=10000, arm_num=10)
-    t = [100*i for i in range(1, 100)]
-    reward_t = [sum_reward[100*i] for i in range(1, 100)]
-    regret_t = [cumulative_regret[100*i] for i in range(1, 100)]
-    pyplot.plot(t, reward_t)
+    a_reward, r_time, sum_reward, cumulative_regret = UCB(total_time_slot=1000000, arm_num=10)
+    t = [100*i for i in range(1, 10000)]
+    reward_t = [sum_reward[100*i] for i in range(1, 10000)]
+    regret_t = [cumulative_regret[100*i] for i in range(1, 10000)]
+    # pyplot.plot(t, reward_t)
     pyplot.plot(t, regret_t)
     pyplot.show()

@@ -24,9 +24,11 @@ def generate_random_variable(ave, distribution):
 
 
 class StochasticMAB:
-    def __init__(self, n_arms, random_type="Gaussian"):
+    def __init__(self, n_arms, random_type="Gaussian", seed=10):
         possible_distribution = ["Gaussian", "Uniform", "Bernoulli", "Exponential"]
+        self.seed = []
         self.n = n_arms
+        np.random.seed(seed)
         self.ave = [np.random.random_sample() for i in range(n_arms)]
         self.distribution = random_type
         if self.distribution not in possible_distribution:
